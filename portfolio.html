@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayodele Al-Ameen — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F6F6F3;
+    --bg-raised: #FFFFFF;
+    --ink: #15181D;
+    --ink-soft: #4B5158;
+    --line: #DEDDD7;
+    --accent: #3452E1;
+    --accent-ink: #223A9E;
+    --sage: #5F7A63;
+    --code-bg: #14181F;
+    --code-text: #D7DCE5;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.brand,.mono{
+    font-family:'IBM Plex Sans', sans-serif;
+  }
+  .mono-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:20;
+    background:rgba(246,246,243,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:920px; margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{font-weight:600; font-size:1rem; letter-spacing:-0.01em;}
+  .brand span{color:var(--accent);}
+  .navlinks{display:flex; gap:24px; font-size:0.9rem;}
+  .navlinks a{text-decoration:none; color:var(--ink-soft); transition:color .15s;}
+  .navlinks a:hover{color:var(--ink);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:72px 0 56px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:2.6rem;
+    line-height:1.15;
+    margin:0 0 18px;
+    letter-spacing:-0.01em;
+    max-width:11ch;
+  }
+  .hero p.role{
+    font-size:1.05rem;
+    color:var(--ink-soft);
+    max-width:42ch;
+    margin:0 0 28px;
+  }
+  .hero-ctas{display:flex; gap:12px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 20px;
+    border-radius:3px;
+    font-size:0.92rem;
+    font-weight:500;
+    text-decoration:none;
+    border:1px solid transparent;
+    transition:transform .12s ease, background .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--ink); color:#fff;}
+  .btn-primary:hover{background:var(--accent-ink);}
+  .btn-ghost{border-color:var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--ink);}
+
+  .code-card{
+    background:var(--code-bg);
+    color:var(--code-text);
+    border-radius:6px;
+    padding:22px 22px 20px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    line-height:1.7;
+    box-shadow:0 18px 40px -18px rgba(20,24,31,0.5);
+  }
+  .code-card .dots{display:flex; gap:6px; margin-bottom:14px;}
+  .code-card .dot{width:9px; height:9px; border-radius:50%; background:#3a414d;}
+  .code-card .kw{color:#8FA6FF;}
+  .code-card .str{color:#9AD1A4;}
+  .code-card .com{color:#6B7280;}
+  .code-card .prop{color:#D7DCE5;}
+  .caret{display:inline-block; width:7px; height:1.1em; background:var(--accent); vertical-align:text-bottom; margin-left:2px; animation:blink 1s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  @media (max-width:720px){
+    .hero{grid-template-columns:1fr; padding-top:48px;}
+    .hero h1{font-size:2.1rem; max-width:none;}
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{padding:56px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom:32px; gap:16px; flex-wrap:wrap;
+  }
+  .section-head h2{font-size:1.5rem; margin:0; letter-spacing:-0.01em;}
+  .section-num{font-family:'IBM Plex Mono', monospace; font-size:0.8rem; color:var(--ink-soft);}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:40px;
+  }
+  .about-grid p{color:var(--ink-soft); margin:0 0 14px;}
+  .about-grid p:last-child{margin-bottom:0;}
+  .about-facts{
+    font-size:0.9rem;
+  }
+  .fact{
+    display:flex; justify-content:space-between;
+    padding:10px 0; border-bottom:1px solid var(--line);
+  }
+  .fact:last-child{border-bottom:none;}
+  .fact dt{color:var(--ink-soft);}
+  .fact dd{margin:0; font-weight:500; text-align:right;}
+  @media (max-width:720px){.about-grid{grid-template-columns:1fr;}}
+
+  /* ---------- SKILLS ---------- */
+  .skill-cols{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+  .skill-cols h3{
+    font-size:0.85rem; text-transform:none; letter-spacing:0;
+    color:var(--sage); margin:0 0 14px; font-weight:600;
+  }
+  .skill-cols ul{list-style:none; margin:0; padding:0;}
+  .skill-cols li{
+    padding:9px 0; border-bottom:1px solid var(--line);
+    font-size:0.92rem; display:flex; justify-content:space-between;
+  }
+  .skill-cols li:last-child{border-bottom:none;}
+  .skill-cols li span{color:var(--ink-soft); font-size:0.85rem;}
+  @media (max-width:720px){.skill-cols{grid-template-columns:1fr; gap:8px;}}
+
+  /* ---------- PROJECTS ---------- */
+  .project{
+    display:grid; grid-template-columns:140px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .project:last-child{border-bottom:none;}
+  .project .pnum{font-family:'IBM Plex Mono', monospace; color:var(--ink-soft); font-size:0.85rem; padding-top:4px;}
+  .project h3{margin:0 0 8px; font-size:1.15rem;}
+  .project p{margin:0 0 14px; color:var(--ink-soft); font-size:0.94rem; max-width:60ch;}
+  .stack{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;}
+  .stack span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.74rem;
+    background:var(--bg-raised);
+    border:1px solid var(--line);
+    padding:3px 8px;
+    border-radius:3px;
+    color:var(--ink-soft);
+  }
+  .project-link{
+    font-size:0.88rem; font-weight:500; text-decoration:none;
+    color:var(--accent-ink); border-bottom:1px solid transparent;
+  }
+  .project-link:hover{border-bottom-color:var(--accent-ink);}
+  @media (max-width:640px){
+    .project{grid-template-columns:1fr; gap:6px;}
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:14px;
+  }
+  .contact-card{
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:18px 20px;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--bg-raised);
+    transition:border-color .15s, transform .12s;
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .contact-card:hover{border-color:var(--ink); transform:translateY(-2px);}
+  .contact-card .clabel{font-size:0.78rem; color:var(--ink-soft); font-family:'IBM Plex Mono', monospace;}
+  .contact-card .cval{font-weight:500; font-size:0.96rem; word-break:break-word;}
+  @media (max-width:600px){.contact-grid{grid-template-columns:1fr;}}
+
+  footer{
+    padding:32px 0 48px;
+    color:var(--ink-soft);
+    font-size:0.82rem;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand">Ayodele <span>/</span> Vale</div>
+    <div class="navlinks">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div>
+      <h1>I build software. Sometimes I make it look good too.</h1>
+      <p class="role">Freelance engineer based in Nigeria. I write the backend, build the frontend, and if the design's not working I'll fix that as well.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#work">See the work</a>
+        <a class="btn btn-ghost" href="https://github.com/VALE-IDEK" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="code-card">
+      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+<span class="com">// whoami.js</span><br>
+<span class="kw">const</span> engineer = {<br>
+&nbsp;&nbsp;<span class="prop">name</span>: <span class="str">"Ayodele Al-Ameen"</span>,<br>
+&nbsp;&nbsp;<span class="prop">handle</span>: <span class="str">"Vale"</span>,<br>
+&nbsp;&nbsp;<span class="prop">stack</span>: [<span class="str">"React"</span>, <span class="str">"Node"</span>, <span class="str">"SQLite/Postgres"</span>],<br>
+&nbsp;&nbsp;<span class="prop">alsoDoes</span>: <span class="str">"visual design"</span>,<br>
+&nbsp;&nbsp;<span class="prop">based</span>: <span class="str">"Nigeria"</span>,<br>
+&nbsp;&nbsp;<span class="prop">available</span>: <span class="kw">true</span><span class="caret"></span><br>
+};
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head">
+      <h2>About</h2>
+      <span class="section-num">01</span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>I'm currently a 400 level Computer Engineering student at Ladoke Akintola University of Technology, and I freelance alongside school. Most of what I build starts as a full project, not a snippet. I write the API, wire up the database, build the frontend, and actually deploy it. Node/Express on the backend, React on the front, whatever database fits.</p>
+        <p>I also do graphic and 3D design on the side, which comes in handy. When a project I'm building needs to look better, I don't have to wait on someone else to fix it.</p>
+      </div>
+      <dl class="about-facts">
+        <div class="fact"><dt>Education</dt><dd>400L Computer Engineering, LAUTECH</dd></div>
+        <div class="fact"><dt>Focus</dt><dd>Full-stack engineering</dd></div>
+        <div class="fact"><dt>Also</dt><dd>Visual & graphic design</dd></div>
+        <div class="fact"><dt>Based in</dt><dd>Nigeria</dd></div>
+        <div class="fact"><dt>Availability</dt><dd>Open to freelance work</dd></div>
+        <div class="fact"><dt>GitHub</dt><dd>VALE-IDEK</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <span class="section-num">02</span>
+    </div>
+    <div class="skill-cols">
+      <div>
+        <h3>Engineering</h3>
+        <ul>
+          <li>JavaScript / TypeScript <span>daily</span></li>
+          <li>React + Vite <span>frontend</span></li>
+          <li>Node.js / Express <span>backend</span></li>
+          <li>SQLite / PostgreSQL <span>data</span></li>
+          <li>Python <span>scripting & tooling</span></li>
+          <li>REST APIs & OAuth <span>integration</span></li>
+          <li>Git & deployment <span>Render, Vercel</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Design</h3>
+        <ul>
+          <li>UI/visual design <span>for my own builds</span></li>
+          <li>Graphic design <span>brand & promo</span></li>
+          <li>3D modeling <span>asset work</span></li>
+          <li>Image editing <span>Python / PIL</span></li>
+          <li>AI-assisted visual design <span>prompt engineering</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <span class="section-num">03</span>
+    </div>
+
+    <div class="project">
+      <div class="pnum">01</div>
+      <div>
+        <h3>DAKAF AVAILABLES</h3>
+        <p>An e-commerce marketplace I built solo, backend to frontend. Google login, an admin dashboard, and checkout that hands off to WhatsApp instead of a payment gateway. Figured out that flow after a few rounds of deployment headaches on Vercel and Render.</p>
+        <div class="stack">
+          <span>Node.js</span><span>Express</span><span>SQLite</span><span>React</span><span>Vite</span><span>Tailwind</span><span>Google OAuth</span><span>Cloudinary</span>
+        </div>
+        <a class="project-link" href="https://github.com/VALE-IDEK/DAKAF" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="pnum">02</div>
+      <div>
+        <h3>Lyric Rush</h3>
+        <p>A lyrics guessing game, built off my own playlist. One HTML file, no backend. Just wanted to see if I could make it fun with nothing but JS.</p>
+        <div class="stack">
+          <span>JavaScript</span><span>HTML/CSS</span><span>Single-file app</span>
+        </div>
+        <a class="project-link" href="https://github.com/VALE-IDEK/Lyrics-rush" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="pnum">03</div>
+      <div>
+        <h3>Height Check</h3>
+        <p>Started as a joke height-check gimmick, turned into a small page of mini-games. Not everything I build has to be serious.</p>
+        <div class="stack">
+          <span>JavaScript</span><span>HTML/CSS</span><span>Game logic</span>
+        </div>
+        <a class="project-link" href="https://github.com/VALE-IDEK/Height-arcade" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="pnum">04</div>
+      <div>
+        <h3>Visual & AI Design Work</h3>
+        <p>Image editing scripts, style/character transformations, AI-generated visuals. The design half of what I do, mostly built with Python and a lot of prompt iteration.</p>
+        <div class="stack">
+          <span>Python / PIL</span><span>Prompt engineering</span><span>Visual design</span>
+        </div>
+        <a class="project-link" href="https://github.com/VALE-IDEK" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-head">
+      <h2>Contact</h2>
+      <span class="section-num">04</span>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:ayodelealameen10@gmail.com">
+        <span class="clabel">EMAIL</span>
+        <span class="cval">ayodelealameen10@gmail.com</span>
+      </a>
+      <a class="contact-card" href="https://wa.me/2349040323320" target="_blank" rel="noopener">
+        <span class="clabel">WHATSAPP</span>
+        <span class="cval">+234 904 032 3320</span>
+      </a>
+      <a class="contact-card" href="https://github.com/VALE-IDEK" target="_blank" rel="noopener">
+        <span class="clabel">GITHUB</span>
+        <span class="cval">VALE-IDEK</span>
+      </a>
+      <a class="contact-card" href="https://www.fiverr.com/vale_fated" target="_blank" rel="noopener">
+        <span class="clabel">FIVERR</span>
+        <span class="cval">vale_fated</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>Ayodele Al-Ameen — Software Engineer</span>
+  <span>Built with plain HTML/CSS/JS</span>
+</footer>
+
+</body>
+</html>
